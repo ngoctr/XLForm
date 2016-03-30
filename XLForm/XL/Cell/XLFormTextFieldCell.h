@@ -26,12 +26,16 @@
 #import "XLFormBaseCell.h"
 #import <UIKit/UIKit.h>
 
+@interface ZeroInsetTextField : UITextField
+
+@end
+
 extern NSString *const XLFormTextFieldLengthPercentage;
 
 @interface XLFormTextFieldCell : XLFormBaseCell <XLFormReturnKeyProtocol>
 
 @property (nonatomic, readonly) UILabel * textLabel;
-@property (nonatomic, readonly) UITextField * textField;
+@property (nonatomic, readonly) ZeroInsetTextField * textField;
 
 @property (nonatomic) NSNumber *textFieldLengthPercentage;
 

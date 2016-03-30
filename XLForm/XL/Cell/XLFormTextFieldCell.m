@@ -29,6 +29,20 @@
 #import "XLForm.h"
 #import "XLFormTextFieldCell.h"
 
+@implementation ZeroInsetTextField
+
+// placeholder position
+- (CGRect)textRectForBounds:(CGRect)bounds {
+  return CGRectMake(bounds.origin.x, bounds.origin.y + 1, bounds.size.width, bounds.size.height);
+}
+
+// text position
+- (CGRect)editingRectForBounds:(CGRect)bounds {
+  return CGRectMake(bounds.origin.x, bounds.origin.y + 1, bounds.size.width, bounds.size.height);
+}
+
+@end
+
 NSString *const XLFormTextFieldLengthPercentage = @"textFieldLengthPercentage";
 
 @interface XLFormTextFieldCell() <UITextFieldDelegate>
@@ -189,7 +203,7 @@ NSString *const XLFormTextFieldLengthPercentage = @"textFieldLengthPercentage";
 -(UITextField *)textField
 {
     if (_textField) return _textField;
-    _textField = [UITextField autolayoutView];
+    _textField = [ZeroInsetTextField autolayoutView];
     return _textField;
 }
 
@@ -202,8 +216,8 @@ NSString *const XLFormTextFieldLengthPercentage = @"textFieldLengthPercentage";
     [self.textLabel setContentCompressionResistancePriority:1000 forAxis:UILayoutConstraintAxisHorizontal];
 
     // Add Constraints
-    [result addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(>=11)-[_textField]-(>=11)-|" options:NSLayoutFormatAlignAllBaseline metrics:nil views:NSDictionaryOfVariableBindings(_textField)]];
-    [result addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(>=11)-[_textLabel]-(>=11)-|" options:NSLayoutFormatAlignAllBaseline metrics:nil views:NSDictionaryOfVariableBindings(_textLabel)]];
+    [result addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_textField]-|" options:NSLayoutFormatAlignAllBaseline metrics:nil views:NSDictionaryOfVariableBindings(_textField)]];
+    [result addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_textLabel]-|" options:NSLayoutFormatAlignAllBaseline metrics:nil views:NSDictionaryOfVariableBindings(_textLabel)]];
 
     return result;
 }

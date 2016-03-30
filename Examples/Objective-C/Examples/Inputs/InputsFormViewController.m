@@ -123,6 +123,8 @@ NSString *const kNotes = @"notes";
 {
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(savePressed:)];
+  //@ngoctr: Test row height
+  self.tableView.rowHeight = 54;
 }
 
 
