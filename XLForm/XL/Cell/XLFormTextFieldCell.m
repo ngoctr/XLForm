@@ -29,20 +29,6 @@
 #import "XLForm.h"
 #import "XLFormTextFieldCell.h"
 
-@implementation ZeroInsetTextField
-
-// placeholder position
-- (CGRect)textRectForBounds:(CGRect)bounds {
-  return CGRectMake(bounds.origin.x, bounds.origin.y + 1, bounds.size.width, bounds.size.height);
-}
-
-// text position
-- (CGRect)editingRectForBounds:(CGRect)bounds {
-  return CGRectMake(bounds.origin.x, bounds.origin.y + 1, bounds.size.width, bounds.size.height);
-}
-
-@end
-
 NSString *const XLFormTextFieldLengthPercentage = @"textFieldLengthPercentage";
 
 @interface XLFormTextFieldCell() <UITextFieldDelegate>
@@ -203,7 +189,7 @@ NSString *const XLFormTextFieldLengthPercentage = @"textFieldLengthPercentage";
 -(UITextField *)textField
 {
     if (_textField) return _textField;
-    _textField = [ZeroInsetTextField autolayoutView];
+    _textField = [UITextField autolayoutView];
     return _textField;
 }
 

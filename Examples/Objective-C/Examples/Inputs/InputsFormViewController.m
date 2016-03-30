@@ -79,6 +79,7 @@ NSString *const kNotes = @"notes";
 
     // Number
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kNumber rowType:XLFormRowDescriptorTypeNumber title:@"Number"];
+  [row.cellConfig setObject:@(NSTextAlignmentRight) forKey:@"textField.textAlignment"];
     [section addFormRow:row];
     
     // Integer
